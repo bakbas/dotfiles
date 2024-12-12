@@ -1,0 +1,27 @@
+# Change directory aliases
+alias ~="cd ~"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+alias o="open"
+alias oo="open ."
+alias f="find . | grep "
+
+# Git aliases
+alias grom="git rebase -i origin/master"
+alias gpso="git push origin \$(git rev-parse --abbrev-ref HEAD)"
+alias gplo="git pull origin \$(git rev-parse --abbrev-ref HEAD)"
+alias gpsof="git push -f origin \$(git rev-parse --abbrev-ref HEAD)"
+alias gs="git status"
+alias gb="git branch"
+alias glol="git log --oneline"
+alias gc="git checkout"
+alias gcb="git checkout -b"
+alias gcm="git commit -m"
+alias ga="git add ."
+alias gr="git reset"
+alias grh="git reset HEAD~1"
+alias grhr="git reset --hard"
+alias gf="git fetch"
