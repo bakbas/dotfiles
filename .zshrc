@@ -1,8 +1,10 @@
-export PS1="%1d: ";
+export PS1="%F{green}%1d: %f"
+
+export PATH="/opt/homebrew/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm";
 export NVM_LAZY_LOAD=true;
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
@@ -18,4 +20,4 @@ fi
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-source ./alias.zsh
+source ~/.zsh_alias

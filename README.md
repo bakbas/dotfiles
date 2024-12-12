@@ -1,4 +1,4 @@
-## Installation
+# Installation
 
 Download this repo on your local and run;
 

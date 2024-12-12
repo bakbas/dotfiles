@@ -56,15 +56,6 @@ defaults write com.apple.TextEdit RichText -int 0
 # Disable hibernation (speeds up entering sleep mode)
 sudo pmset -a hibernatemode 0
 
-# Remove the sleep image file to save disk space
-sudo rm /Private/var/vm/sleepimage
-
-# Create a zero-byte file instead…
-sudo touch /Private/var/vm/sleepimage
-
-# …and make sure it can’t be rewritten
-sudo chflags uchg /Private/var/vm/sleepimage
-
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
@@ -82,7 +73,7 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 ###############################################################################
 
 # Sleep the display after 10 minutes
-sudo pmset -a displaysleep 10
+sudo pmset -a displaysleep 5
 
 # Set machine sleep to 10 minutes while charging
 sudo pmset -c sleep 10
@@ -104,6 +95,9 @@ defaults write com.apple.screencapture location -string "${HOME}/Desktop"
 # Enable subpixel font rendering on non-Apple LCDs
 # Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
 defaults write NSGlobalDomain AppleFontSmoothing -int 1
+
+# Enable HiDPI display modes (requires restart)
+sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
 
 ###############################################################################
 # Finder                                                                      #
@@ -175,11 +169,8 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 # Dock, Dashboard, and hot corners                                            #
 ###############################################################################
 
-# Enable highlight hover effect for the grid view of a stack (Dock)
-defaults write com.apple.dock mouse-over-hilite-stack -bool true
-
-# Set the icon size of Dock items to 42 pixels
-defaults write com.apple.dock tilesize -int 42
+# Set the icon size of Dock items to 52 pixels
+defaults write com.apple.dock tilesize -int 52
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool false

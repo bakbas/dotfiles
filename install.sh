@@ -5,7 +5,7 @@ sudo -v
 # Generate SSH keys
 pub=$HOME/.ssh/id_rsa.pub
 
-if [ -f $pub ]; then
+if [ -f "$pub" ]; then
     echo 'SSH key is already exists, no need to generate..'
 else
     ssh-keygen -t rsa -b 4096 -C "bahtiyar@outlook.com"
@@ -20,9 +20,10 @@ else
     echo "xcode-select is already installed."
 fi
 
-# ./brew.sh
+echo 'Installing Brew & Packages..'
+sh brew.sh
 echo 'Installing VSCode extensions!..'
 sh vscode-extensions.sh
-# xargs npm i -g < npmfile
+xargs npm i -g < npmfile
 echo 'Setting up MacOS defaults!..'
 sh macos.sh
