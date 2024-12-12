@@ -1,3 +1,5 @@
+#!/usr/bin/bash
+
 # Change directory aliases
 alias ~="cd ~"
 alias ..="cd .."
