@@ -28,7 +28,7 @@ This does everything in [[Installation Flow]]: brew + Brewfile, dotfile symlinks
 - [ ] `gcloud init` + `gcloud auth login` + `gcloud auth application-default login`
 - [ ] `wrangler login`
 - [ ] `docker login` (if needed)
-- [ ] Postman / Sketch / NordVPN / OpenVPN profiles — sign in & re-import
+- [ ] Postman / Sketch / OpenVPN profiles — sign in & re-import
 
 ## 4. Secret-bearing tools (by hand)
 
