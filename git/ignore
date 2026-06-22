@@ -1,0 +1,18 @@
+# Global gitignore — symlinked to ~/.config/git/ignore (git's default excludesfile)
+
+# Claude Code local settings should never be committed in any repo
+**/.claude/settings.local.json
+
+# macOS cruft
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# Editor / IDE
+*.swp
+*~
+.idea/
+
+# Windows cruft
+Thumbs.db

@@ -2,6 +2,7 @@ doctoc
 editorconfig
 npm-check-updates
 pm2
-react-native
-serve
 yarn
+typescript
+wrangler
+@shopify/cli

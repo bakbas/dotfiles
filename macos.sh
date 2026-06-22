@@ -11,12 +11,21 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-NAME="bahtiyar"
+NAME="$(whoami)"
 sudo scutil --set ComputerName "$NAME"
 sudo scutil --set HostName "$NAME"
 sudo scutil --set LocalHostName "$NAME"
 sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$NAME"
 
+
+# Set the system appearance to Dark mode
+defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
+
+# Menu bar clock: 24-hour, show day of week, no AM/PM, no seconds
+defaults write com.apple.menuextra.clock Show24Hour -bool true
+defaults write com.apple.menuextra.clock ShowAMPM -bool false
+defaults write com.apple.menuextra.clock ShowDayOfWeek -bool true
+defaults write com.apple.menuextra.clock ShowSeconds -bool false
 
 # Automatically quit printer app once the print jobs complete
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
@@ -42,10 +51,6 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 # Show battery life percentage.
 sudo defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
-# Reveal IP address, hostname, OS version, etc. when clicking the clock
-# in the login window
-sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
-
 # Use plain text mode for new TextEdit documents
 defaults write com.apple.TextEdit RichText -int 0
 
@@ -65,6 +70,16 @@ defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool true
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerHorizSwipeGesture -int 1
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 1
 
+# Trackpad: enable tap to click for this user and on the login screen
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+# Trackpad: enable two-finger secondary (right) click
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+
 # Increase sound quality for Bluetooth headphones/headsets
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
@@ -72,7 +87,7 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 # Energy saving                                                               #
 ###############################################################################
 
-# Sleep the display after 10 minutes
+# Sleep the display after 5 minutes
 sudo pmset -a displaysleep 5
 
 # Set machine sleep to 10 minutes while charging
@@ -123,6 +138,9 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 # Finder: show path bar
 defaults write com.apple.finder ShowPathbar -bool true
 
+# Finder: use list view in all windows by default
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
 # Disable the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
@@ -159,9 +177,6 @@ defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 # Disable the warning before emptying the Trash
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
-# Enable AirDrop over Ethernet and on unsupported Macs running Lion
-defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
-
 # Show the ~/Library folder
 chflags nohidden ~/Library
 
@@ -179,10 +194,14 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 # Dock, Dashboard, and hot corners                                            #
 ###############################################################################
 
-# Set the icon size of Dock items to 52 pixels
-defaults write com.apple.dock tilesize -int 52
+# Set the icon size of Dock items to 42 pixels
+defaults write com.apple.dock tilesize -int 42
 
-# Automatically hide and show the Dock
+# Enable Dock magnification on hover
+defaults write com.apple.dock magnification -bool true
+defaults write com.apple.dock largesize -int 65
+
+# Do not auto-hide the Dock (keep it always visible)
 defaults write com.apple.dock autohide -bool false
 
 # Make Dock icons of hidden applications translucent
@@ -190,6 +209,9 @@ defaults write com.apple.dock showhidden -bool true
 
 # Don’t show recent applications in Dock
 defaults write com.apple.dock show-recents -bool false
+
+# Don’t automatically rearrange Spaces based on most recent use
+defaults write com.apple.dock mru-spaces -bool false
 
 ###############################################################################
 # Safari & WebKit                                                             #
@@ -289,6 +311,7 @@ for app in "Activity Monitor" \
 	"Address Book" \
 	"Calendar" \
 	"cfprefsd" \
+	"ControlCenter" \
 	"Contacts" \
 	"Dock" \
 	"Finder" \

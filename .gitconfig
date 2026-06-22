@@ -1,0 +1,9 @@
+[user]
+	name = Bahtiyar
+	email = bahtiyar@outlook.com
+[init]
+	defaultBranch = main
+[pull]
+	rebase = false
+[credential]
+	helper = osxkeychain
