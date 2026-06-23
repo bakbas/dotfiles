@@ -10,9 +10,7 @@ VS Code itself is a cask in the [[Packages - Brewfile|Brewfile]]. Extensions are
 
 ## Curation notes
 
-The list is deliberately trimmed of redundant extensions: the Python extension (`ms-python.python`) auto-installs Pylance and the debugger, so those aren't listed separately; the Docker extension pulls in Container Tools; and only one Prettier formatter is kept to avoid format-on-save conflicts.
-
-Two C/C++ language servers remain installed (`ms-vscode.cpptools` and `llvm-vs-code-extensions.vscode-clangd`); if you use clangd, disable cpptools' IntelliSense in `settings.json` to avoid duplicate diagnostics.
+The list is deliberately trimmed of redundant extensions: the Python extension (`ms-python.python`) auto-installs Pylance and the debugger (`ms-python.debugpy`), so those aren't listed separately, and only one Prettier formatter is kept to avoid format-on-save conflicts. When refreshing the list with `code --list-extensions`, drop `ms-python.debugpy` again — it reappears in the dump because it's installed, but it's a dependency, not a top-level choice.
 
 ## A note on settings/keybindings
 
